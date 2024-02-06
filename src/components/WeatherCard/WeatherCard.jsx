@@ -3,6 +3,7 @@ import CurrentCity from "./components/CurrentCity"
 import Forecast from "./components/Forecast"
 import SearchHistory from './components/SearchHistory'
 import SearchBar from "./components/SearchBar"
+import moment from 'moment'
 
 const WeatherCard = () => {
 
@@ -16,24 +17,13 @@ const WeatherCard = () => {
     }
 
     useEffect(() => {
-        const formatDateTime = (date) => {
-            const day = date.getDate().toString().padStart(2, '0');
-            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            const month = monthNames[date.getMonth()];
-            const dayOfWeekNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-            const dayOfWeek = dayOfWeekNames[date.getDay()];
-            const hours = date.getHours().toString().padStart(2, '0');
-            const minutes = date.getMinutes().toString().padStart(2, '0');
-            return `${day} ${month}, ${dayOfWeek} ${hours}:${minutes}`;
-        };
 
         const updateDateTime = () => {
-            setCurrentTime(formatDateTime(new Date()));
+            setCurrentTime(moment().format("DD MMM, dddd hh:mm a"));
         };
 
         updateDateTime();
-        const intervalId = setInterval(updateDateTime, 60000);
+        const intervalId = setInterval(updateDateTime, 1000);
 
         return () => clearInterval(intervalId);
     }, []);
