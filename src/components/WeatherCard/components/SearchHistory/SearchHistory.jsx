@@ -11,6 +11,8 @@ import sunny from "../../../WeatherIcon/assets/Sunny.png"
 
 const SearchHistory = ({ searchHistory, onCitySelect }) => {
 
+    const [loading, setLoading] = useState(false);
+    const [initialLoad, setInitialLoad] = useState(true);
     const [citiesWeather, setCitiesWeather] = useState([]);
 
     const bgColors = ['bg-[#6495f4]', 'bg-[#6294f3]', 'bg-[#6176e7]', 'bg-[#746ddf]'];
@@ -31,6 +33,8 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
 
     useEffect(() => {
 
+        setLoading(true);
+
         const fetchCitiesWeather = async () => {
             const weatherPromises = searchHistory.map(city => getWeather(city));
             try {
@@ -43,12 +47,23 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
                 setCitiesWeather(fourCitiesWeatherData);
             } catch (error) {
                 console.error("Error fetching cities weather data:", error);
+            } finally {
+                setLoading(false);
+                setInitialLoad(false);
             }
         };
 
         fetchCitiesWeather();
 
     }, [searchHistory]);
+
+    if (loading && initialLoad) {
+        return (
+            <div className="flex justify-center items-center w-full h-full">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Loading...</h1>
+            </div>
+        )
+    }
 
     return (
         <div className="flex flex-initial items-center w-full px-4 space-x-6">

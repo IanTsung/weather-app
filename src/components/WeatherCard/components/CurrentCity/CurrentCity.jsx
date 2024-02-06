@@ -24,9 +24,10 @@ import sunny_background from "./assets/Sunny day_background.png"
 
 const CurrentCity = ({ cityName, currentTime }) => {
 
+    const [loading, setLoading] = useState(false);
     const [temp, setTemp] = useState("");
-    const [tempRange, setTempRange] = useState("loading...");
-    const [weatherCondition, setWeatherCondition] = useState("loading...");
+    const [tempRange, setTempRange] = useState("");
+    const [weatherCondition, setWeatherCondition] = useState("");
     const [humidity, setHumidity] = useState("");
     const [windSpeed, setWindSpeed] = useState("");
     const [airQuality, setAirQuality] = useState("");
@@ -53,6 +54,9 @@ const CurrentCity = ({ cityName, currentTime }) => {
     }
 
     useEffect(() => {
+
+        setLoading(true);
+
         getWeather(cityName)
         .then(weatherData => {
 
@@ -80,11 +84,25 @@ const CurrentCity = ({ cityName, currentTime }) => {
         })
         .catch(error => {
             console.error("Error fetching data: ", error);
-        });
+        })
+        .finally(() => {
+            setLoading(false);
+        })
     }, [cityName]);
       
     const currentWeatherIcon = weatherIcons[weatherCondition] || sunny;
     const currentWeatherImage = weatherImages[weatherCondition] || sunny_background;
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-full">
+                <WeatherImage imageUrl={currentWeatherImage} className="absolute top-0 right-0"/>
+                <h1 className="text-white text-xl md:text-2xl lg:text-3xl font-bold">
+                    Loading...
+                </h1>
+            </div>
+        )
+    }
 
     return (
         <div className="flex flex-col items-center space-y-7">
