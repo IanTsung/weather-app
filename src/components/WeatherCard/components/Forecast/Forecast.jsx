@@ -13,6 +13,7 @@ import sunny from "../../../WeatherIcon/assets/Sunny.png"
 const Forecast = ({ cityName }) => {
 
     const [forecastData, setForecastData] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const weatherIcons = {
         Clouds: cloudy,
@@ -39,6 +40,9 @@ const Forecast = ({ cityName }) => {
     }      
 
     useEffect(() => {
+
+        setLoading(true);
+
         getWeather(cityName)
         .then(weatherData => {
             const { lon, lat } = weatherData.coord;
@@ -52,8 +56,19 @@ const Forecast = ({ cityName }) => {
             }));
             setForecastData(fourDayForecastData);
         })
-        .catch(error => console.error("Error fetching forecast data: ", error));
+        .catch(error => console.error("Error fetching forecast data: ", error))
+        .finally(() => {
+            setLoading(false);
+        })
     }, [cityName]);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-full">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Loading...</h1>
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-initial items-center p-4 space-x-6">

@@ -9,7 +9,7 @@ import rain from "../../../WeatherIcon/assets/Rain.png"
 import snow from "../../../WeatherIcon/assets/Snow.png"
 import sunny from "../../../WeatherIcon/assets/Sunny.png"
 
-const SearchHistory = ({ searchHistory }) => {
+const SearchHistory = ({ searchHistory, onCitySelect }) => {
 
     const [citiesWeather, setCitiesWeather] = useState([]);
 
@@ -24,6 +24,10 @@ const SearchHistory = ({ searchHistory }) => {
         Drizzle: rain,
         Thunderstorm: hail,
     };
+
+    const handleCityClickChange = (cityName) => {
+        onCitySelect(cityName);
+    }
 
     useEffect(() => {
 
@@ -55,6 +59,7 @@ const SearchHistory = ({ searchHistory }) => {
                     nameValue={city.name}
                     tempValue={city.tempRange}
                     className={bgColors[index % bgColors.length]}
+                    onClick={() => {handleCityClickChange(city.name)}}
                 />
             )}
         </div>

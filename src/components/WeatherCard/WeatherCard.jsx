@@ -44,7 +44,7 @@ const WeatherCard = () => {
                 <SearchBar onSearch={handleCityChange}/>
             </div>
             <div className="row-span-2 col-span-4 m-6 flex items-end">
-                <SearchHistory searchHistory={searchHistory}/>
+                <SearchHistory searchHistory={searchHistory} onCitySelect={handleCityChange}/>
             </div>
         </div>
     )
