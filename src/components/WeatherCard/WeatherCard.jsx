@@ -13,9 +13,14 @@ const WeatherCard = () => {
     const [currentTime, setCurrentTime] = useState("");
     const [weatherCondition, setWeatherCondition] = useState("");
 
-    const handleCityChange = (newCity) => {
-        setCityName(newCity);
-        setSearchHistory(prev => [newCity, ...prev.filter(city => city !== newCity).slice(0, 3)]);
+    const handleCityChange = async (newCity) => {
+        try {
+            const data = await getWeather(newCity);
+            setCityName(newCity);
+            setSearchHistory(prev => [newCity, ...prev.filter(city => city !== newCity).slice(0, 3)]);
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+        }    
     }
 
     const bgColors = {
