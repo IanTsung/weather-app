@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import CurrentCity from "./components/CurrentCity"
 import Forecast from "./components/Forecast"
 import SearchHistory from './components/SearchHistory'
@@ -19,6 +21,15 @@ const WeatherCard = () => {
             setCityName(newCity);
             setSearchHistory(prev => [newCity, ...prev.filter(city => city !== newCity).slice(0, 3)]);
         } catch (error) {
+            toast.error("City Name Not Valid", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             console.error("Error fetching data: ", error);
         }    
     }
@@ -74,6 +85,18 @@ const WeatherCard = () => {
             <div className="row-span-2 col-span-4 m-6 flex items-end">
                 <SearchHistory searchHistory={searchHistory} onCitySelect={handleCityChange}/>
             </div>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     )
 }
