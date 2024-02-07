@@ -7,10 +7,10 @@ import TemperatureRange from "../../../../../TemperatureRange";
 const DayOfWeek = ({ nameValue, dateValue, tempValue, imgUrl }) => {
     return (
         <div className="flex flex-col items-center justify-center">
-            <Name value={nameValue} className={"font-bold text-1xl"}/>
+            <Name value={nameValue} className={"font-bold text-xl"}/>
             <Date value={dateValue}/>
             <WeatherIcon imageUrl={imgUrl}/>
-            <TemperatureRange value={tempValue}/>
+            <TemperatureRange minTemp={tempValue.minTemp} maxTemp={tempValue.maxTemp}/>
         </div>
     )
 }

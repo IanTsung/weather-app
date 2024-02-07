@@ -69,7 +69,7 @@ const CurrentCity = ({ cityName, currentTime }) => {
             const somatosensory = Math.round(weatherData.main.feels_like);
 
             setTemp(temp);
-            setTempRange(`${minTemp} - ${maxTemp}`);
+            setTempRange({ minTemp: minTemp, maxTemp: maxTemp });
             setWeatherCondition(condition);
             setHumidity(humidityValue);
             setWindSpeed(windSpeed);
@@ -110,7 +110,7 @@ const CurrentCity = ({ cityName, currentTime }) => {
             <Date value={currentTime} className="text-white"/>
             <Name value={cityName} className="text-white text-3xl font-bold"/>
             <Temperature value={temp} className="text-slate-200 text-8xl font-bold"/>
-            <TemperatureRange value={tempRange} className="text-white"/>
+            <TemperatureRange minTemp={tempRange.minTemp} maxTemp={tempRange.maxTemp} className="text-white"/>
             <WeatherIcon imageUrl={currentWeatherIcon}/>
             <Meta humidityValue={humidity} windSpeed={windSpeed} airQualityValue={airQuality} somatosensoryValue={somatosensory}/>
         </div>

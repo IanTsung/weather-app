@@ -15,7 +15,7 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
     const [initialLoad, setInitialLoad] = useState(true);
     const [citiesWeather, setCitiesWeather] = useState([]);
 
-    const bgColors = ['bg-[#6495f4]', 'bg-[#6294f3]', 'bg-[#6176e7]', 'bg-[#746ddf]'];
+    const bgColors = ['bg-city-gradient-1', 'bg-city-gradient-2', 'bg-city-gradient-3', 'bg-city-gradient-4'];
 
     const weatherIcons = {
         Clouds: cloudy,
@@ -41,7 +41,7 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
                 const weatherData = await Promise.all(weatherPromises);
                 const fourCitiesWeatherData = weatherData.map(cityData => ({
                     name: cityData.name,
-                    tempRange: `${Math.round(cityData.main.temp_min)} - ${Math.round(cityData.main.temp_max)}`,
+                    tempRange: { minTemp: Math.round(cityData.main.temp_min), maxTemp: Math.round(cityData.main.temp_max) },
                     weatherIcon: weatherIcons[cityData.weather[0].main] || sunny
                 }));
                 setCitiesWeather(fourCitiesWeatherData);

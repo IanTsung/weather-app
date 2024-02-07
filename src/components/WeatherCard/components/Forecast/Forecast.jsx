@@ -51,7 +51,7 @@ const Forecast = ({ cityName }) => {
         .then(forecastData => {
             const fourDayForecastData = forecastData.map(day => ({
                 date: new Date(day.dt * 1000),
-                tempRange: `${Math.round(day.temp.min)} - ${Math.round(day.temp.max)}`,
+                tempRange: { minTemp: Math.round(day.temp.min), maxTemp: Math.round(day.temp.max) },
                 weatherIcon: weatherIcons[day.weather[0].main] || sunny
             }));
             setForecastData(fourDayForecastData);

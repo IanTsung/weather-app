@@ -1,7 +1,7 @@
-const TemperatureRange = ({ value, className, loading}) => {
+const TemperatureRange = ({ minTemp, maxTemp, className }) => {
     return (
         <div className={className}>
-            {loading? "loading..." : `${value}°`}
+            {`${minTemp} ~ ${maxTemp}°`}
         </div>
     )
 }
