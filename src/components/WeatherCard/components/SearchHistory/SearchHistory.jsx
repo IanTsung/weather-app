@@ -15,8 +15,6 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
     const [initialLoad, setInitialLoad] = useState(true);
     const [citiesWeather, setCitiesWeather] = useState([]);
 
-    const bgColors = ['bg-city-gradient-1', 'bg-city-gradient-2', 'bg-city-gradient-3', 'bg-city-gradient-4'];
-
     const weatherIcons = {
         Clouds: cloudy,
         CloudyDay : cloudyDay,
@@ -26,6 +24,16 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
         Drizzle: rain,
         Thunderstorm: hail,
     };
+
+    const bgColors = {
+        Clouds: 'bg-cloudy',
+        CloudyDay : 'bg-cloudy',
+        Clear: 'bg-sunny',
+        Snow: 'bg-snow',
+        Rain: 'bg-rain',
+        Drizzle: 'bg-rain',
+        Thunderstorm: 'bg-snow',
+    }
 
     const handleCityClickChange = (cityName) => {
         onCitySelect(cityName);
@@ -42,7 +50,8 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
                 const fourCitiesWeatherData = weatherData.map(cityData => ({
                     name: cityData.name,
                     tempRange: { minTemp: Math.round(cityData.main.temp_min), maxTemp: Math.round(cityData.main.temp_max) },
-                    weatherIcon: weatherIcons[cityData.weather[0].main] || sunny
+                    weatherIcon: weatherIcons[cityData.weather[0].main] || sunny,
+                    bgColor: bgColors[cityData.weather[0].main] || 'sunny'
                 }));
                 setCitiesWeather(fourCitiesWeatherData);
             } catch (error) {
@@ -73,7 +82,7 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
                     imgUrl={city.weatherIcon}
                     nameValue={city.name}
                     tempValue={city.tempRange}
-                    className={bgColors[index % bgColors.length]}
+                    className={city.bgColor}
                     onClick={() => {handleCityClickChange(city.name)}}
                 />
             )}
