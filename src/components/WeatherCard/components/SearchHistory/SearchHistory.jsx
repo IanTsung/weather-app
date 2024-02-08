@@ -8,6 +8,11 @@ import hail from "../../../WeatherIcon/assets/Hail.png"
 import rain from "../../../WeatherIcon/assets/Rain.png"
 import snow from "../../../WeatherIcon/assets/Snow.png"
 import sunny from "../../../WeatherIcon/assets/Sunny.png"
+//Importing BackgroundImage
+import london from "./assets/London.png"
+import newYork from "./assets/Newyork.png"
+import shanghai from "./assets/Shanghai.png"
+import sydney from "./assets/sydney.png"
 
 const SearchHistory = ({ searchHistory, onCitySelect }) => {
 
@@ -35,6 +40,8 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
         Thunderstorm: 'bg-snow',
     }
 
+    const bgImg = [sydney, shanghai, newYork, london];
+
     const handleCityClickChange = (cityName) => {
         onCitySelect(cityName);
     }
@@ -47,11 +54,12 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
             const weatherPromises = searchHistory.map(city => getWeather(city));
             try {
                 const weatherData = await Promise.all(weatherPromises);
-                const fourCitiesWeatherData = weatherData.map(cityData => ({
+                const fourCitiesWeatherData = weatherData.map((cityData, index) => ({
                     name: cityData.name,
                     tempRange: { minTemp: Math.round(cityData.main.temp_min), maxTemp: Math.round(cityData.main.temp_max) },
                     weatherIcon: weatherIcons[cityData.weather[0].main] || sunny,
-                    bgColor: bgColors[cityData.weather[0].main] || 'bg-sunny'
+                    bgColor: bgColors[cityData.weather[0].main] || 'bg-sunny',
+                    bgImg: bgImg[index % bgImg.length] 
                 }));
                 setCitiesWeather(fourCitiesWeatherData);
             } catch (error) {
@@ -82,7 +90,8 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
                     imgUrl={city.weatherIcon}
                     nameValue={city.name}
                     tempValue={city.tempRange}
-                    className={city.bgColor}
+                    bgColor={city.bgColor}
+                    bgImg={city.bgImg}
                     onClick={() => {handleCityClickChange(city.name)}}
                 />
             )}
