@@ -51,7 +51,7 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
                     name: cityData.name,
                     tempRange: { minTemp: Math.round(cityData.main.temp_min), maxTemp: Math.round(cityData.main.temp_max) },
                     weatherIcon: weatherIcons[cityData.weather[0].main] || sunny,
-                    bgColor: bgColors[cityData.weather[0].main] || 'sunny'
+                    bgColor: bgColors[cityData.weather[0].main] || 'bg-sunny'
                 }));
                 setCitiesWeather(fourCitiesWeatherData);
             } catch (error) {

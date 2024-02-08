@@ -19,7 +19,7 @@ const WeatherCard = () => {
         try {
             const data = await getWeather(newCity);
             setCityName(newCity);
-            setSearchHistory(prev => [newCity, ...prev.filter(city => city !== newCity).slice(0, 3)]);
+            setSearchHistory(prev => [data.name, ...prev.filter(city => city !== data.name).slice(0, 3)]);
         } catch (error) {
             toast.error("City Name Not Valid", {
                 position: "top-center",

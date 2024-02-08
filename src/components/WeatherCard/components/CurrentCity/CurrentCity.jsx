@@ -25,6 +25,7 @@ import sunny_background from "./assets/Sunny day_background.png"
 const CurrentCity = ({ cityName, currentTime }) => {
 
     const [loading, setLoading] = useState(false);
+    const [name, setName] = useState("");
     const [temp, setTemp] = useState("");
     const [tempRange, setTempRange] = useState("");
     const [weatherCondition, setWeatherCondition] = useState("");
@@ -60,6 +61,7 @@ const CurrentCity = ({ cityName, currentTime }) => {
         getWeather(cityName)
         .then(weatherData => {
 
+            const name = weatherData.name;
             const temp = Math.round(weatherData.main.temp);
             const minTemp = Math.round(weatherData.main.temp_min);
             const maxTemp = Math.round(weatherData.main.temp_max);
@@ -68,6 +70,7 @@ const CurrentCity = ({ cityName, currentTime }) => {
             const windSpeed = Math.round(weatherData.wind.speed);
             const somatosensory = Math.round(weatherData.main.feels_like);
 
+            setName(name);
             setTemp(temp);
             setTempRange({ minTemp: minTemp, maxTemp: maxTemp });
             setWeatherCondition(condition);
@@ -108,7 +111,7 @@ const CurrentCity = ({ cityName, currentTime }) => {
         <div className="flex flex-col items-center space-y-7">
             <WeatherImage imageUrl={currentWeatherImage} className="absolute top-0 right-0"/>
             <Date value={currentTime} className="text-white"/>
-            <Name value={cityName} className="text-white text-3xl font-bold"/>
+            <Name value={name} className="text-white text-3xl font-bold"/>
             <Temperature value={temp} className="text-slate-200 text-8xl font-bold"/>
             <TemperatureRange minTemp={tempRange.minTemp} maxTemp={tempRange.maxTemp} className="text-white"/>
             <WeatherIcon imageUrl={currentWeatherIcon}/>
