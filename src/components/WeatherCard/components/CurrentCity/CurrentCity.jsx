@@ -114,7 +114,7 @@ const CurrentCity = ({ cityName, currentTime }) => {
             <Name value={name} className="text-white text-3xl font-bold"/>
             <Temperature value={temp} className="text-slate-200 text-8xl font-bold"/>
             <TemperatureRange minTemp={tempRange.minTemp} maxTemp={tempRange.maxTemp} className="text-white"/>
-            <WeatherIcon imageUrl={currentWeatherIcon}/>
+            <WeatherIcon imageUrl={currentWeatherIcon} className="w-1/2 h-1/2"/>
             <Meta humidityValue={humidity} windSpeed={windSpeed} airQualityValue={airQuality} somatosensoryValue={somatosensory}/>
         </div>
     )
