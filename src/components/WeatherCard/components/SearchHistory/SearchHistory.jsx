@@ -28,6 +28,7 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
         Rain: rain,
         Drizzle: rain,
         Thunderstorm: hail,
+        Default: sunny
     };
 
     const bgColors = {
@@ -38,6 +39,7 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
         Rain: 'bg-rain',
         Drizzle: 'bg-rain',
         Thunderstorm: 'bg-snow',
+        Default: 'bg-sunny'
     }
 
     const bgImg = [sydney, shanghai, newYork, london];
@@ -57,8 +59,8 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
                 const fourCitiesWeatherData = weatherData.map((cityData, index) => ({
                     name: cityData.name,
                     tempRange: { minTemp: Math.round(cityData.main.temp_min), maxTemp: Math.round(cityData.main.temp_max) },
-                    weatherIcon: weatherIcons[cityData.weather[0].main] || sunny,
-                    bgColor: bgColors[cityData.weather[0].main] || 'bg-sunny',
+                    weatherIcon: weatherIcons[cityData.weather[0].main] || weatherIcons.Default,
+                    bgColor: bgColors[cityData.weather[0].main] || bgColors.Default,
                     bgImg: bgImg[index % bgImg.length] 
                 }));
                 setCitiesWeather(fourCitiesWeatherData);
