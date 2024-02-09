@@ -28,6 +28,7 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
         Rain: rain,
         Drizzle: rain,
         Thunderstorm: hail,
+        Haze : cloudyDay,
         Default: sunny
     };
 
@@ -39,6 +40,7 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
         Rain: 'bg-rain',
         Drizzle: 'bg-rain',
         Thunderstorm: 'bg-snow',
+        Haze: 'bg-snow',
         Default: 'bg-sunny'
     }
 

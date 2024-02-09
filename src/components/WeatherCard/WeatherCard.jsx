@@ -42,6 +42,8 @@ const WeatherCard = () => {
         Rain: 'bg-rain',
         Drizzle: 'bg-rain',
         Thunderstorm: 'bg-snow',
+        Haze: 'bg-snow',
+        Default: 'bg-sunny'
     }
 
     useEffect(() => {
@@ -69,7 +71,7 @@ const WeatherCard = () => {
         fetchWeather();
     }, [cityName]);
 
-    const bgColor = bgColors[weatherCondition] || 'bg-sunny';
+    const bgColor = bgColors[weatherCondition] || bgColors.Default;
 
     return (
         <div className="w-4/5 h-4/5 mx-auto rounded-3xl bg-[#f2f4fd] overflow-hidden shadow-blue-800 grid grid-cols-6 grid-rows-6">

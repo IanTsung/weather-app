@@ -23,6 +23,8 @@ const Forecast = ({ cityName }) => {
         Rain: rain,
         Drizzle: rain,
         Thunderstorm: hail,
+        Haze : cloudyDay,
+        Default: sunny
     };
 
     function formatDate(date) {
@@ -52,7 +54,7 @@ const Forecast = ({ cityName }) => {
             const fourDayForecastData = forecastData.map(day => ({
                 date: new Date(day.dt * 1000),
                 tempRange: { minTemp: Math.round(day.temp.min), maxTemp: Math.round(day.temp.max) },
-                weatherIcon: weatherIcons[day.weather[0].main] || sunny
+                weatherIcon: weatherIcons[day.weather[0].main] || weatherIcons.Default
             }));
             setForecastData(fourDayForecastData);
         })

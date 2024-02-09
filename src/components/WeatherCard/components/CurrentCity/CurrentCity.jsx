@@ -42,6 +42,8 @@ const CurrentCity = ({ cityName, currentTime }) => {
         Rain: rain,
         Drizzle: rain,
         Thunderstorm: hail,
+        Haze : cloudyDay,
+        Default: sunny
     };
 
     const weatherImages = {
@@ -52,6 +54,8 @@ const CurrentCity = ({ cityName, currentTime }) => {
         Rain: rain_background,
         Drizzle: rain_background,
         Thunderstorm: hail_background,
+        Haze: cloudy_background,
+        Default: sunny_background
     }
 
     useEffect(() => {
@@ -93,8 +97,8 @@ const CurrentCity = ({ cityName, currentTime }) => {
         })
     }, [cityName]);
       
-    const currentWeatherIcon = weatherIcons[weatherCondition] || sunny;
-    const currentWeatherImage = weatherImages[weatherCondition] || sunny_background;
+    const currentWeatherIcon = weatherIcons[weatherCondition] || weatherIcons.Default;
+    const currentWeatherImage = weatherImages[weatherCondition] || weatherImages.Default;
 
     if (loading) {
         return (
