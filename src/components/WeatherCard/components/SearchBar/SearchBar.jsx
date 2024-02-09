@@ -23,7 +23,6 @@ const SearchBar = ({ onSearch }) => {
         event.preventDefault();
 
         if (selectedCity) {
-            console.log(selectedCity);
             onSearch(`${selectedCity.name}, ${selectedCity.state ? `${selectedCity.state}, ` : ''}${selectedCity.country}`);
         } else if (inputValue.trim()) {
             onSearch(inputValue.trim());
