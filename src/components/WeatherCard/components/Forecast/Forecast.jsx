@@ -73,7 +73,7 @@ const Forecast = ({ cityName }) => {
     }
 
     return (
-        <div className="flex flex-initial items-center p-4 space-x-6">
+        <div className="w-full h-full flex flex-initial items-center p-4 lg:space-x-6">
             {forecastData.map((day, index) => (
                 <DayOfWeek 
                     key={index} 
