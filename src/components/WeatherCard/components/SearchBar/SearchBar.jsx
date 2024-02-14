@@ -40,7 +40,7 @@ const SearchBar = ({ onSearch }) => {
     }
 
     return (
-        <div className="flex justify-start items-center mt-2 relative">
+        <div className="flex justify-start items-center mt-6 lg:mt-24 relative">
             <form className="flex justify-between rounded-2xl p-1 bg-slate-50 w-full lg:w-3/5" onSubmit={handleSubmit}>
                 <input 
                     type="text" 

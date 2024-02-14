@@ -87,7 +87,7 @@ const SearchHistory = ({ searchHistory, onCitySelect }) => {
     }
 
     return (
-        <div className="flex flex-initial items-center w-full h-full px-4 space-x-6">
+        <div className="flex flex-initial items-end w-full h-full px-4 space-x-6">
             {citiesWeather.map((city, index) => 
                 <City 
                     key={index}

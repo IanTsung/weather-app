@@ -81,7 +81,7 @@ const WeatherCard = () => {
             <div className="row-span-3 col-span-1 lg:col-span-4 my-6 mx-auto">
                 <Forecast cityName={cityName}/>
             </div>
-            <div className="row-span-1 col-span-1 lg:col-span-4 m-8">
+            <div className="row-span-1 col-span-1 lg:col-span-4 ml-8 ">
                 <SearchBar onSearch={handleCityChange}/>
             </div>
             <div className="row-span-2 col-span-1 lg:col-span-4 m-6 flex items-end">
