@@ -114,7 +114,7 @@ const CurrentCity = ({ cityName, currentTime }) => {
     return (
         <div className="flex flex-col items-center space-y-7">
             <WeatherImage imageUrl={currentWeatherImage} className="absolute top-0 right-0"/>
-            <Date value={currentTime} className="text-white lg:px-6 mr-auto"/>
+            <Date value={currentTime} className="text-white px-4 lg:px-6 mr-auto"/>
             <Name value={name} className="text-white text-3xl font-bold"/>
             <Temperature value={temp} className="text-slate-200 text-8xl font-bold"/>
             <TemperatureRange minTemp={tempRange.minTemp} maxTemp={tempRange.maxTemp} className="text-white"/>
