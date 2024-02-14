@@ -40,8 +40,8 @@ const SearchBar = ({ onSearch }) => {
     }
 
     return (
-        <div className="flex justify-start items-center mt-2">
-            <form className="flex justify-between rounded-2xl p-1 bg-slate-50 w-1/2" onSubmit={handleSubmit}>
+        <div className="flex justify-start items-center mt-2 relative">
+            <form className="flex justify-between rounded-2xl p-1 bg-slate-50 w-full lg:w-3/5" onSubmit={handleSubmit}>
                 <input 
                     type="text" 
                     className="px-4 py-2 outline-none w-full bg-slate-50" 
@@ -56,7 +56,7 @@ const SearchBar = ({ onSearch }) => {
                     Search
                 </button>
                 {options.length > 0 && (
-                    <ul className="absolute mt-12 bg-white border border-gray-200 rounded-md w-1/4 z-10">
+                    <ul className="absolute mt-12 bg-white border border-gray-200 rounded-md w-5/6 lg:w-3/5 z-10">
                         {options.map((city, index) => (
                             <li
                                 key={index}
